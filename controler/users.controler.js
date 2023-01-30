@@ -51,4 +51,27 @@ module.exports.saveUser = async (req, res, next)=>{
     })
     res.send('user added')
 }
+module.exports.updateUser = async (req, res, next)=>{
+  const users = await allUserParced;
+  console.log(users);
+    const params = await req.params;
+    console.log(params);
+    const singleUser = await users.find( user => user.id == Number(params.id))
+    console.log(singleUser);
+    singleUser.id = await req.body.id;
+    singleUser.name = await req.body.name;
+    singleUser.gender = await req.body.gender;
+    singleUser.contact = await req.body.contact;
+    singleUser.address = await req.body.address;
+    singleUser.photoUrl = await req.body.photoUrl;
+    fs.writeFile('user.json', JSON.stringify(allUserParced), (err, newUserAdded)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log(newUserAdded);
+      }
+    })
+    res.send('user has been updated')
+}
 

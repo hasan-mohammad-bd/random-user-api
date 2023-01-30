@@ -11,5 +11,8 @@ router.route('/random')
 router.route('/save')
     .post(userData.saveUser)
 
+router.route('/update/:id')
+    .patch(userData.updateUser)
+
 module.exports = router;
 
