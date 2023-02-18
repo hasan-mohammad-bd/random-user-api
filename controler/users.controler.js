@@ -1,4 +1,6 @@
 const fs = require('fs');
+const { getDb } = require('../utility/dbConnect');
+const dbConnect = require('../utility/dbConnect');
 
 let allUserParced = [];
 
@@ -38,7 +40,20 @@ module.exports.getAllUser = async (req, res, next)=>{
 }
 
 module.exports.saveUser = async (req, res, next)=>{
-  const users = await allUserParced;
+
+/*   try {
+    const db = getDb();
+    const tool = req.body;
+
+    const result = await db.collection('tools').insertOne(tool)
+    console.log(result);
+    res.send('successful')
+  } catch (error) {
+    
+  } */
+
+
+/*   const users = await allUserParced;
     const bodyContent = await req.body;
     users.push(bodyContent)
     fs.writeFile('user.json', JSON.stringify(users), (err, newUserAdded)=>{
@@ -48,7 +63,7 @@ module.exports.saveUser = async (req, res, next)=>{
       else{
         console.log(newUserAdded);
       }
-    })
+    }) */
     res.send('user added')
 }
 module.exports.updateUser = async (req, res, next)=>{
